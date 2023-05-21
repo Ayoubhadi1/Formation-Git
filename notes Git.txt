@@ -1,0 +1,48 @@
+git init -> initialiser un projet
+git add nomFichier  / git add --all / git add *.html-> stage des fichiers (mettre mes fichiers dans un systeme de staging)
+git commit -m "premiere commit" -> commiter les modifications
+git log -> historique des commits
+git status -> voir l'état du projet
+git diff ->voir les différences entre mes fichiers
+
+git log -> list of commits(author , username , email , message , hash)
+git log --oneline (list of commits on one line)
+git show hashOfCommit -> if you want to see the changes that went into commit
+git diff -> give me difference between what you have in the current working directory and what has been committed
+git restore index.js -> rejeter les changements
+git commit --amend -m "added boy{} in main.css" -> modify commit message of commit 
+git branch -> list branches in our local machine
+git branch -r -> list branches in remote repo
+git branch -a -> list all branches
+git branch feature-a -> create new branch (locally) (However on internship we created branch on gitlab remotely)
+git checkout feature-a -> switch branch
+git checkout - -> switch to previous branch
+*we are already on (feature-a) git push	-) the current branch ...has no upstream branch.To push the current branch ...
+ git push -u origin feature-a -> push branch to remote repo
+git checkout -b to-switch -> create and switch to branch 
+git branch -d to-delete -> delete branch
+after pull request and merging pull request from amigoscode/feature-a to main ,I delete feature-a branch on github , and I pull what I merged on main branch(remote) ,so I can also delete branch feature-a from local machine 
+git branch -d feature-a -> delete local branch
+*(I have conflicts when I push , in the same file I have content different of what is available on remote repo)
+		message : updates were rejected because the remote contains work that you don't have locally.you may want to first integrate the remote changes
+	  	(git pull) before pushing again
+		git pull -> automatic merge failed (conflict) -> <<<< HEAD (these are our changes)======= content of remote repo >>>>> hash commit
+		choose both or what I want , and after git add . .... git push
+*rebase :
+* (feature-xyz) git pull -rebase origin main 	(or) 		git pull -r origin master -> we want to take the latest changes from the main branch and then add our changes on top of it
+	resolving all the commits that we have(on feature-xyz) => resolve conflicts(current change is what is on main remote / incoming change is first commit on feature-xyz) + git add . + git rebase --continue
+//Link : https://www.atlassian.com/git/tutorials/merging-vs-rebasing
+(The golden rule of git rebase is to never use it on public branches. For example, think about what would happen if you rebased main onto your feature branch)
+* (main) git rebase feature main (rebase feature into main)
+
+
+
+---
+
+git checkout 985147 -> voir le commite celle qui était avant , sans perdre toutes les modifications que l'on fait depuis , en revanche on peut qu'observer , on 
+			pourra pas faire des modifications dessus
+git checkout 985147 index.html -> il nous ramene ce fichier tel qu'il était à ce moment là et ensuite en pourra le stage et le commit
+git revert 784864 -> permet de défaire un commit
+git revert 784864 index.html -> permet de défaire les modifications apportés à ce fichier , sans altérer l'historique 
+git reset 1546565 -> permet de revenir en arrière et de revenir à une commit précise , l'historique sera altéré
+git reset 1546565 --hard ->permet de revenir en arrière et en plus les fichiers de l'espace de travail vont etre identiques au commit qu'on sélectionne ici
